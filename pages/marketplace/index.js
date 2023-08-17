@@ -9,7 +9,6 @@ export default function Marketplace({ courses }) {
   const { account } = useAccount();
   const { network } = useNetwork();
 
-  console.log(`network.data ${network.data}`);
   return (
     <>
       <div className="py-4">
@@ -21,7 +20,6 @@ export default function Marketplace({ courses }) {
     </>
   );
 }
-
 export function getStaticProps() {
   const { data } = getAllCourses();
   return {

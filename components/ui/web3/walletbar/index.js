@@ -1,5 +1,4 @@
 export default function WalletBar({ address, network }) {
-  console.log("WalletBar network ", network);
   return (
     <section className="text-white bg-indigo-600">
       <div className="p-8">
