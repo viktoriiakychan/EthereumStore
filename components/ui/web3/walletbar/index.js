@@ -33,7 +33,7 @@ export default function WalletBar({ address, network }) {
               )}
               {requireInstall && (
                 <div className="bg-yellow-500 p-4 rounded-lg">
-                  Cennot connect to network. Install MetaMask please.
+                  Cannot connect to network. Install MetaMask please!
                 </div>
               )}
               {network.data && (
