@@ -1,11 +1,11 @@
 import { useWeb3 } from "@components/providers";
 import Link from "next/link";
 import { Button } from "@components/ui/common";
-import { useAccount } from "@components/hooks/web3/useAccount";
 import { useRouter } from "next/router";
+import { useAccount } from "@components/hooks/web3";
 
-export default function Footer() {
-  const { connect, isLoading, isWeb3Loaded } = useWeb3();
+export default function Navbar() {
+  const { connect, isLoading, requiredInstall } = useWeb3();
   const { account } = useAccount();
   const { pathname } = useRouter();
 
@@ -46,17 +46,16 @@ export default function Footer() {
                   <Button hoverable={false} className="cursor-default">
                     Hi there {account.isAdmin && "Admin"}
                   </Button>
-                ) : (
-                  <Button onClick={connect}>Connect</Button>
-                )
-              ) : (
-                <Button
+                ) : requiredInstall ? (
+                  <Button
                   onClick={() =>
                     window.open("https://metamask.io/download.html", "_blank")
                   }
                 >
                   Install Metamask
                 </Button>
+              ) : (
+                <Button onClick={connect}>Connect</Button>
               )}
             </div>
           </div>

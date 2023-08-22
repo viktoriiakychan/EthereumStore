@@ -13,7 +13,7 @@ const NETWORKS = {
 const tergetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID]
 
 export const handler = (web3, provider) => () => {
-  const { data, error, mutate, ...rest } = useSWR(web3 ? "web/network" : null, async () => {
+  const { data, mutate, ...rest } = useSWR(web3 ? "web/network" : null, async () => {
     const chainId = await web3.eth.getChainId();
     return NETWORKS[chainId];
   });
@@ -26,13 +26,10 @@ export const handler = (web3, provider) => () => {
   }, [web3]);
 
   return {
-    network: {
-      data,
-      hasFinishFirstFetch: data ?? error,
-      mutate,
-      target: tergetNetwork,
-      isSupported: data === tergetNetwork,
-      ...rest,
-    },
+    data,
+    mutate,
+    target: tergetNetwork,
+    isSupported: data === tergetNetwork,
+    ...rest,
   };
 };
