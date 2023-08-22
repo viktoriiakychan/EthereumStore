@@ -7,8 +7,6 @@ const enhanceHook = (swrRes) => {
     }
 }
 
-import { useHooks } from "@components/providers/web3"
-
 export const useNetwork = () => {
     const swrRes = enhanceHook(useHooks((hooks) => hooks.useNetwork)());
   return {
@@ -20,6 +18,6 @@ export const useNetwork = () => {
 export const useAccount = () => {
     const swrRes = enhanceHook(useHooks((hooks) => hooks.useAccount)());
   return {
-    network: swrRes,
+    account: swrRes,
   }
 }

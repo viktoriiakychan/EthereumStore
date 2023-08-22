@@ -68,6 +68,6 @@ export function useWeb3() {
 
 export function useHooks(cb) {
   const { hooks } = useWeb3()
-  return cb(hooks())
+  return cb(hooks)
 }
 

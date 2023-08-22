@@ -1,14 +1,13 @@
 import { useWeb3 } from "@components/providers";
 import Link from "next/link";
 import { Button } from "@components/ui/common";
-import { useRouter } from "next/router";
 import { useAccount } from "@components/hooks/web3";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
-  const { connect, isLoading, requiredInstall } = useWeb3();
+  const { connect, isLoading, requireInstall } = useWeb3();
   const { account } = useAccount();
   const { pathname } = useRouter();
-
   return (
     <section>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -41,13 +40,12 @@ export default function Navbar() {
                 <Button disabled={true} onClick={connect}>
                   Loading...
                 </Button>
-              ) : isWeb3Loaded ? (
-                account.data ? (
-                  <Button hoverable={false} className="cursor-default">
-                    Hi there {account.isAdmin && "Admin"}
-                  </Button>
-                ) : requiredInstall ? (
-                  <Button
+              ) : account.data ? (
+                <Button hoverable={false} className="cursor-default">
+                  Hi there {account.isAdmin && "Admin"}
+                </Button>
+              ) : requireInstall ? (
+                <Button
                   onClick={() =>
                     window.open("https://metamask.io/download.html", "_blank")
                   }
